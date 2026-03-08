@@ -28,6 +28,7 @@ Your `docker-compose.yml` will look like this:
 ```yaml
 services:
   shopper:
+    image: ghcr.io/wyliebutler/shopper:latest
     build:
       context: .
       dockerfile: Dockerfile
