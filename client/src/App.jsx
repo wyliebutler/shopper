@@ -23,12 +23,14 @@ function App() {
     const [isListening, setIsListening] = useState(false)
     const [showScanner, setShowScanner] = useState(false)
     const [isStoreMode, setIsStoreMode] = useState(false)
+    const [isAiEnabled, setIsAiEnabled] = useState(true)
     const fileInputRef = useRef(null)
 
     useEffect(() => {
         if (token) {
             fetchItems()
             fetchStores()
+            fetchConfig()
 
             const socket = io()
 
@@ -142,11 +144,26 @@ function App() {
         }
     }
 
+    const fetchConfig = async () => {
+        try {
+            const res = await fetch('/api/config', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            if (res.ok) {
+                const data = await res.json()
+                setIsAiEnabled(data.aiEnabled)
+            }
+        } catch (error) {
+            console.error('Error fetching config:', error)
+        }
+    }
+
     const forceRefresh = () => {
         setLoading(true)
         setActiveFilter('All')
         fetchItems()
         fetchStores()
+        fetchConfig()
     }
 
     const createNewItem = async (text) => {
@@ -445,6 +462,7 @@ function App() {
                     onVoiceInput={handleVoiceInput}
                     isListening={isListening}
                     onShowScanner={() => setShowScanner(true)}
+                    aiEnabled={isAiEnabled}
                 />
             )}
 

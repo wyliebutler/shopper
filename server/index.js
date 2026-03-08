@@ -159,6 +159,13 @@ app.post('/api/items', authenticateToken, (req, res) => {
     }
 });
 
+// Get app configuration (e.g., if AI is enabled)
+app.get('/api/config', authenticateToken, (req, res) => {
+    res.json({
+        aiEnabled: !!process.env.GEMINI_API_KEY
+    });
+});
+
 // Upload image and identify item
 app.post('/api/upload', authenticateToken, upload.single('image'), async (req, res) => {
     if (!req.file) {

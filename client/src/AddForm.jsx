@@ -12,7 +12,8 @@ export default function AddForm({
     onImageUpload,
     onVoiceInput,
     isListening,
-    onShowScanner
+    onShowScanner,
+    aiEnabled
 }) {
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -50,23 +51,27 @@ export default function AddForm({
                 </select>
 
                 <div style={{ display: 'flex', gap: '8px', flexShrink: 0 }}>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        capture="environment"
-                        ref={fileInputRef}
-                        onChange={onImageUpload}
-                        style={{ display: 'none' }}
-                    />
-                    <button
-                        type="button"
-                        className="btn-primary"
-                        onClick={() => fileInputRef.current.click()}
-                        disabled={uploading}
-                        style={{ background: '#e0e7ff', color: '#4f46e5', padding: '12px' }}
-                    >
-                        {uploading ? <div className="spinner">...</div> : <Camera size={20} />}
-                    </button>
+                    {aiEnabled && (
+                        <>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                capture="environment"
+                                ref={fileInputRef}
+                                onChange={onImageUpload}
+                                style={{ display: 'none' }}
+                            />
+                            <button
+                                type="button"
+                                className="btn-primary"
+                                onClick={() => fileInputRef.current.click()}
+                                disabled={uploading}
+                                style={{ background: '#e0e7ff', color: '#4f46e5', padding: '12px' }}
+                            >
+                                {uploading ? <div className="spinner">...</div> : <Camera size={20} />}
+                            </button>
+                        </>
+                    )}
 
                     <button
                         type="button"
