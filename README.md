@@ -23,6 +23,27 @@ cd shopper
 docker-compose up -d
 ```
 
+Your `docker-compose.yml` will look like this:
+
+```yaml
+services:
+  shopper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9001:9001"
+    volumes:
+      - ./data:/app/server/data
+      - ./uploads:/app/server/uploads
+    environment:
+      - PORT=9001
+      - DB_PATH=/app/server/data/shopper.db
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - APP_PASSWORD=400478
+    restart: unless-stopped
+```
+
 ### 2. Run Single Container
 Alternatively, you can run the image directly from GHCR:
 
