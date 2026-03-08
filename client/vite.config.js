@@ -10,9 +10,9 @@ export default defineConfig({
             registerType: 'autoUpdate',
             includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
             manifest: {
-                name: 'My Shopping List',
-                short_name: 'Shopping List',
-                description: 'AI-Powered Shopping List',
+                name: 'Shopper',
+                short_name: 'Shopper',
+                description: 'A modern, premium shopping list application.',
                 theme_color: '#182848',
                 background_color: '#182848',
                 display: 'standalone',
