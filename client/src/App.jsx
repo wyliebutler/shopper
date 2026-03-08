@@ -422,7 +422,7 @@ function App() {
             <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '10px' }}>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                     <h1 style={{ margin: 0, fontSize: 'clamp(1.5rem, 6vw, 2.2rem)' }}>Shopper</h1>
-                    <span style={{ fontSize: '0.8rem', opacity: 0.6, fontWeight: 'bold' }}>v2.1</span>
+                    <span style={{ fontSize: '0.8rem', opacity: 0.6, fontWeight: 'bold' }}>v2.2</span>
                 </div>
                 <div style={{ display: 'flex', gap: '6px' }}>
                     <button onClick={() => setIsStoreMode(!isStoreMode)} className="btn-icon" title={isStoreMode ? "Switch to Edit Mode" : "Switch to Store Mode"} style={{ opacity: isStoreMode ? 1 : 0.7, color: isStoreMode ? '#4ade80' : 'inherit', padding: '8px 6px' }}>
