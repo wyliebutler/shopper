@@ -10,7 +10,7 @@ services:
       - ./uploads:/app/server/uploads
     environment:
       - PORT=9001
-      - DB_PATH=/app/server/data/todo.db
+      - DB_PATH=/app/server/data/shopper.db
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - APP_PASSWORD=400478
     restart: unless-stopped

@@ -2,7 +2,7 @@ const Database = require('better-sqlite3');
 const path = require('path');
 
 // Use a volume path in production, or local file in dev
-const dbPath = process.env.DB_PATH || path.join(__dirname, 'todo.db');
+const dbPath = process.env.DB_PATH || path.join(__dirname, 'shopper.db');
 const db = new Database(dbPath);
 
 // Create table
