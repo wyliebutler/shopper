@@ -12,9 +12,19 @@ Shopper is a modern, glassmorphism-styled shopping list application built with R
 - **Cross-Device Sync**: Real-time updates across multiple devices using WebSockets.
 - **Glassmorphism UI**: Beautiful, premium design that feels state-of-the-art.
 
-## Quick Start with Docker
+## Quick Start
 
-You can run Shopper easily using Docker.
+### 1. Clone and Run (Recommended)
+The easiest way to get started is to clone the repository and use Docker Compose:
+
+```bash
+git clone https://github.com/wyliebutler/shopper.git
+cd shopper
+docker-compose up -d
+```
+
+### 2. Run Single Container
+Alternatively, you can run the image directly from GHCR:
 
 ```bash
 docker run -d \
@@ -24,7 +34,7 @@ docker run -d \
   -v shopper_data:/app/server/data \
   -v shopper_uploads:/app/server/uploads \
   --name shopper \
-  ghcr.io/${{GITHUB_REPOSITORY}}/shopper:latest
+  ghcr.io/wyliebutler/shopper:latest
 ```
 
 ### Environment Variables
