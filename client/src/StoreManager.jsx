@@ -29,10 +29,30 @@ export default function StoreManager({ show, onClose, stores, onAddStore, onDele
                 <h3 style={{ margin: 0, color: 'white' }}>Manage Stores</h3>
                 <button onClick={onClose} className="btn-icon"><X size={20} /></button>
             </div>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '10px', marginBottom: '15px' }}>
-                <input type="text" value={newStoreName} onChange={e => setNewStoreName(e.target.value)} placeholder="Store name" style={{ flex: 1 }} />
-                <input type="color" value={newStoreColor} onChange={e => setNewStoreColor(e.target.value)} style={{ width: '40px', padding: '0', height: '40px', borderRadius: '8px', cursor: 'pointer' }} title="Pick Store Color" />
-                <button type="submit" className="btn-primary" style={{ padding: '0 15px' }}><Plus size={20} /></button>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '8px', marginBottom: '15px', alignItems: 'center' }}>
+                <input 
+                    type="text" 
+                    value={newStoreName} 
+                    onChange={e => setNewStoreName(e.target.value)} 
+                    placeholder="Store name" 
+                    style={{ flex: 1, minWidth: '0' }} 
+                />
+                <div style={{ position: 'relative', width: '42px', height: '42px', flexShrink: 0 }}>
+                    <input 
+                        type="color" 
+                        value={newStoreColor} 
+                        onChange={e => setNewStoreColor(e.target.value)} 
+                        style={{ 
+                            position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', 
+                            padding: '0', border: '2px solid rgba(255,255,255,0.2)', borderRadius: '10px', 
+                            cursor: 'pointer', background: 'transparent', appearance: 'none', overflow: 'hidden'
+                        }} 
+                        title="Pick Store Color" 
+                    />
+                </div>
+                <button type="submit" className="btn-primary" style={{ padding: '0 12px', height: '42px', flexShrink: 0 }}>
+                    <Plus size={20} />
+                </button>
             </form>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, maxHeight: '200px', overflowY: 'auto' }}>
                 {stores.map(store => (
