@@ -35,7 +35,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=2.2.${{ github.run_number }}
+            type=raw,value=2.3.${{ github.run_number }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
@@ -49,8 +49,24 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v2.2.${{ github.run_number }}
-          name: Release v2.2.${{ github.run_number }}
+          tag_name: v2.3.${{ github.run_number }}
+          name: Release v2.3.${{ github.run_number }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd ~/docker/my_todo
+            docker compose pull
+            docker compose up -d

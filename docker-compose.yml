@@ -1,8 +1,6 @@
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/wyliebutler/shopper:latest
     expose:
       - "9001"
     volumes:
