@@ -1,17 +1,22 @@
 services:
-  shopper:
-    image: ghcr.io/wyliebutler/shopper:latest
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "9001:9001"
+    expose:
+      - "9001"
     volumes:
       - ./data:/app/server/data
       - ./uploads:/app/server/uploads
     environment:
       - PORT=9001
-      - DB_PATH=/app/server/data/shopper.db
+      - DB_PATH=/app/server/data/todo.db
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - APP_PASSWORD=400478
     restart: unless-stopped
+    networks:
+      - shared_proxy_network
+
+networks:
+  shared_proxy_network:
+    external: true
