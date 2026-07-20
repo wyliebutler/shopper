@@ -188,7 +188,7 @@ app.post('/api/upload', authenticateToken, upload.single('image'), async (req, r
         if (process.env.GEMINI_API_KEY) {
             (async () => {
                 try {
-                    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+                    const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
                     const imageData = fs.readFileSync(req.file.path);
                     const imageBase64 = imageData.toString('base64');
                     const prompt = "Identify the main object in this image. Return ONLY the name of the object, nothing else. Keep it short (e.g., 'Apple', 'Milk Carton').";
