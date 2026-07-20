@@ -207,8 +207,9 @@ app.post('/api/upload', authenticateToken, upload.single('image'), async (req, r
                     io.emit('item_updated', { id: newItem.id, text: identifiedText });
                 } catch (error) {
                     console.error("Background Gemini API Error:", error);
+                    fs.writeFileSync(path.join(__dirname, 'gemini_error.txt'), error.stack || error.message || String(error));
                     // Update to a generic fallback if AI fails
-                    const fallbackText = 'New Item (AI failed)';
+                    const fallbackText = 'Err: ' + (error.message || 'Unknown').substring(0, 30);
                     db.prepare('UPDATE items SET text = ? WHERE id = ?').run(fallbackText, newItem.id);
                     io.emit('item_updated', { id: newItem.id, text: fallbackText });
                 }
