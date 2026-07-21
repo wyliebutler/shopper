@@ -67,6 +67,6 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            cd ~/docker/my_todo
+            cd ~/docker/shopper
             docker compose pull
             docker compose up -d
